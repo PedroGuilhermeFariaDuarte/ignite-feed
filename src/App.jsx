@@ -15,6 +15,95 @@ import "./styles/global/index.css"
 // Styles
 import styles from "./App.module.css"
 
+
+const posts = [
+  {
+    id: 16112395,
+    author: {
+      avatar_url: "https://avatars.githubusercontent.com/u/16112395?v=4",
+      name: "Pedro Guilherme",
+      role: "Web Developer"
+    },
+    publishedAt: new Date(),
+    content: {
+      text: [
+        {
+          type: "paragraph",
+          content: 'Fala galeraa 👋'
+        },
+        {
+          type: "paragraph",
+          content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀',
+        },
+        {
+          type: "link",
+          content: '👉 jane.design/doctorcare'
+        }
+      ],
+      tags: [
+        'novoprojeto' ,
+        'nlw',
+        'rocketseat'
+      ]                                    
+    },
+    commentaries: [
+      {
+        id: 2254731,
+        author: {
+          avatar_url: "https://avatars.githubusercontent.com/u/2254731?v=4",
+          name: "Diego Fernandes",
+          id: 2254731       
+        },
+        publishedAt: new Date(),
+        content: {
+          text: [
+            {
+              type: "paragraph",
+              content: 'Muito bom Devon, parabéns!! 👏👏'
+            },            
+          ],
+          tags: [
+            'parabéns',
+            'Devon',            
+          ]
+        },
+        hots: 0
+      }
+    ]
+  },
+  {
+    id: 2254731,
+    author: {
+      avatar_url: "https://avatars.githubusercontent.com/u/2254731?v=4",
+      name: "Diego Fernandes",
+      role: "CTO at @Rocketseat. Passionate about education and changing people's lives through programming."
+    },
+    publishedAt: new Date(),
+    content: {
+      text: [
+        {
+          type: "paragraph",
+          content: 'Fala galeraa 👋'
+        },
+        {
+          type: "paragraph",
+          content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀',
+        },
+        {
+          type: "link",
+          content: '👉 jane.design/doctorcare'
+        }
+      ],
+      tags: [
+        'novoprojeto' ,
+        'nlw',
+        'rocketseat'
+      ]                                    
+    },
+    commentaries: []
+  }
+]
+
 function App() {  
 
   return <>
@@ -22,10 +111,12 @@ function App() {
     <div className={styles.wrapper}>
       <Sidebar />
       <main>
-        <Post 
-          title="Lorem" 
-          content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas, odit qui aspernatur reiciendis praesentium odio facere a, nobis, aut culpa omnis quas. Repudiandae optio temporibus, expedita minus excepturi tempore deserunt"
-        />
+        {
+          posts.length <= 0 ? 'Nenhum post disponível' : ''
+        }
+        {
+          posts.map(post => <Post post={post} key={post.id}/>)
+        }       
       </main>
     </div>
   </>

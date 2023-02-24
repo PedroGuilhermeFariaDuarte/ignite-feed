@@ -1,3 +1,6 @@
+// Components
+import {Avatar} from "../Avatar"
+
 // Styles
 import styles from "./styles.module.css"
 
@@ -5,9 +8,7 @@ export function Sidebar(){
     return <>
         <aside className={styles.sidebar}>
             <div className={styles.header}>
-                <div className={styles.imageProfile}>
-                    <img src="https://avatars.githubusercontent.com/u/16112395?v=4" />
-                </div>
+                <Avatar path="https://avatars.githubusercontent.com/u/16112395?v=4"/>                
             </div>
             <div className={styles.profile}>
                 <strong>Pedro Guilherme</strong>

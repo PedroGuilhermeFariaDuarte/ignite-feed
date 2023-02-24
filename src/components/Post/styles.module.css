@@ -1,3 +1,152 @@
 .post {
+ background-color: var(--gray-600);
+ border-radius: 8px;
+ padding: 2.5rem;
+ transition: all 0.1s ease-in-out;
+}
+
+.post + .post {
+    margin-top: 2rem;
+}
+
+.post > header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.post > header time {
+    font-size: var(--font-size-small);
+    color: var(--gray-300)
+}
+
+.author {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.authorDescription {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;  
     
+    word-wrap: break-word;
+    line-break: normal;
+    text-overflow: ellipsis;
+}
+
+.strong {
+    color: var(--gray-100);
+    line-height: 1.6rem;
+}
+
+.authorDescription span:not(.strong) {
+    font-size: var(--font-size-small);
+    color: var(--gray-300);
+    line-height: 1.6rem;
+}
+
+.content {
+    line-height: 1.6rem;
+    color: var(--grey-200);
+    margin-top: 1.5rem;
+}
+
+.content p {
+    margin-top: 1rem;
+}
+
+.content a{
+    font-weight: bold;
+    color: var(--green-200);
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.content a:hover {
+    color: var(--green-600)
+}
+
+.anchors {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.commentForm  {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--gray-500);
+}
+
+.formDescription {
+    line-height: 1.6rem;
+    color: var(--gray-100);
+}
+
+.commentForm textarea {
+    width: 100%;
+    height: 6rem;
+    border: 0;
+    outline: none;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: var(--gray-700);
+
+    margin-top: 1rem;
+    resize: none;
+
+    color: var(--gray-100);
+    line-height: 1.4rem;
+
+}
+
+.commentForm .commentFormFooter {
+    visibility: hidden;
+    max-height: 0;
+
+    transition: all 0.1s ease-in-out;
+}
+
+.commentForm:focus-within .commentFormFooter {
+    visibility: visible;
+    max-height: none;    ;
+}
+
+.commentForm .commentFormFooter button {
+    padding: 1rem 1.5rem;
+    border: 0;
+    border-radius: 8px;
+    background-color: var(--green-200);
+    
+    margin-top: 1rem;
+
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+
+    transition: all 0.1s ease-in-out;
+}
+
+.commentForm .commentFormFooter button:hover {
+    background-color: var(--green-600);
+}
+
+.commentList {
+    margin-top: 2rem;
+
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
 }

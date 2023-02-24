@@ -23,4 +23,8 @@
     */
     --red-300: #F75A68;
 
+    /*
+     Font size
+    */
+    --font-size-small: 0.875rem;
 }

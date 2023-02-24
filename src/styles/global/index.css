@@ -7,6 +7,10 @@
     outline: none;
 }
 
+*:focus {    
+    outline: 1px solid var(--green-200) !important;
+}
+
 html, body, #root {
     background-color: var(--gray-700);
 
