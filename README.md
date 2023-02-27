@@ -1,7 +1,8 @@
-![image](https://user-images.githubusercontent.com/16112395/221676902-8b5bfb7d-98be-4008-aa58-5c23b19353a2.png)
+![ignite feed](https://user-images.githubusercontent.com/16112395/221683639-82484482-69b8-4211-a492-295d16740751.png)
 
 # Ignite Feed
 Um app de timeline de feed's
+
 
 ## Sobre
 Ignite Feed é um app de timeline de feed, idealizado pela rocketseat na primeira etapa do Ignite 😁
