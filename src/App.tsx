@@ -14,9 +14,9 @@ import "./styles/global/index.css"
 
 // Styles
 import styles from "./App.module.css"
+import { IPost } from './components/Post/types'
 
-
-const posts = [
+const posts: Array<IPost> = [
   {
     id: 16112395,
     author: {

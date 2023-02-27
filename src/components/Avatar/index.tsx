@@ -1,10 +1,13 @@
 // Styles
 import styles from "./styles.module.css"
 
-export function Avatar({path, alt, isDefault}){
+// Types
+import { IAvatar } from "./types"
+
+export function Avatar({path, alt, isDefault, ...props}: IAvatar){
     return (
         <div className={`${isDefault ? styles.avatarDefault : styles.avatar}`}>
-            <img src={path} alt={alt} />
+            <img src={path} alt={alt} {...props} />
         </div>
     )
 }

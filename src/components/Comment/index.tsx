@@ -8,7 +8,10 @@ import {Avatar} from "../Avatar"
 // Styles
 import styles from "./styles.module.css"
 
-export function Comment({ commentary, indexComment, onRemoveCommentary }){    
+// Types
+import { IComment } from "./types"
+
+export function Comment({ commentary, indexComment, onRemoveCommentary }: IComment){    
     const [hotsCount, setHotsCount] = useState(0)
 
     const publisehdDateFormated = format(commentary.publishedAt, "d 'de' LLLL 'ás' HH:mm'h'", {
@@ -31,7 +34,7 @@ export function Comment({ commentary, indexComment, onRemoveCommentary }){
     return (
         <div className={styles.comment}>
             <div className={styles.commentImage}>
-                <Avatar path={commentary.author.avatar_url} isDefault={true} />                                    
+                <Avatar path={commentary.author.avatar_url} alt="" isDefault={true} />                                    
             </div>
 
             <div className={styles.commentContainer}>

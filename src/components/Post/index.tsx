@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { ChangeEvent, ChangeEventHandler, FormEvent, InvalidEvent, useState } from "react"
 
 import {format, formatDistanceToNow} from "date-fns"
 import ptBR from "date-fns/locale/pt-BR"
@@ -10,7 +10,13 @@ import { Comment } from "../Comment"
 // Styles
 import styles from "./styles.module.css"
 
-export function Post({post}) {
+// External Type
+import { ICommentary, IText } from "../Comment/types"
+
+// Types
+import { IPostProps } from "./types"
+
+export function Post({ post }: IPostProps) {
     const [comments,setComments] = useState(post.commentaries)
     const [newCommentText,setNewCommentText] = useState("")    
 
@@ -25,11 +31,11 @@ export function Post({post}) {
 
     const isNewCommentEmpty = newCommentText.length <= 0
     
-    function handleNewCommentChange(){
+    function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement> ){
         try {
             if (!event ) return
             
-            event.target.setCustomValidity("")
+            event?.target?.setCustomValidity("")
             const elementTextAreaValue = event?.target?.value || '';
 
             setNewCommentText(elementTextAreaValue)
@@ -38,13 +44,13 @@ export function Post({post}) {
         }        
     }
 
-    function handleCreateNewCommentary(event) {
+    function handleCreateNewCommentary(event: FormEvent) {
         try {
             if (!event || newCommentText.trim() === '') return
 
-            event.preventDefault()
+            event?.preventDefault()
         
-            setComments(comments => [...comments, {
+            setComments((comments: Array<ICommentary>) => [...comments, {
                 id: 16112395,
                 uuid: new Date().getTime(),
                 author: {
@@ -75,7 +81,7 @@ export function Post({post}) {
         try {            
             if (indexCommentToDelete <= -1 || !comments?.[indexCommentToDelete]) return            
 
-            const commentsWithoutDeletedOne = comments.filter((_comment, index) => index !== indexCommentToDelete)                        
+            const commentsWithoutDeletedOne = comments.filter((_comment: ICommentary, index: number) => index !== indexCommentToDelete)                        
 
             setComments(commentsWithoutDeletedOne)
         } catch (error) {
@@ -83,9 +89,9 @@ export function Post({post}) {
         }
     }
 
-    function handlerNewCommentInvalid(){
+    function handlerNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>){
         try {
-            event.target.setCustomValidity("Esté campo é obrigatório")            
+            event?.target?.setCustomValidity("Esté campo é obrigatório")            
         } catch (error) {
             console.log("PostComponent@error ~ handlerNewCommentInvalid", error)
         }
@@ -95,14 +101,14 @@ export function Post({post}) {
         <article className={styles.post}>
             <header>
                 <div className={styles.author}>
-                    <Avatar path={post.author.avatar_url} isDefault={true} />                    
+                    <Avatar path={post.author.avatar_url} isDefault={true} alt="" />                    
                     <div className={styles.authorDescription}>
                         <span className={styles.strong}>
                             {post.author.name}
                         </span>
                         <span>
                             {
-                                post.author.role.length > 10 ? post.author.role.substr(0, post.author.role.length - 25) + '...' : post.author.role
+                                post.author.role.length > 20 ? post.author.role.substr(0, post.author.role.length /2) + '...' : post.author.role
                             }
                         </span>
                     </div>
@@ -114,7 +120,7 @@ export function Post({post}) {
 
             <div className={styles.content}>
                 {
-                    post.content.text.map((text, index) => {
+                    post.content.text.map((text: IText, index: number) => {
                         if(text.type === 'paragraph') {
                             return <p key={index}>{text.content}</p>
                         } else if (text.type === 'link') {
@@ -156,7 +162,7 @@ export function Post({post}) {
                             commentary={commentary}                             
                             onRemoveCommentary={handleRemoveCommentary}
                             indexComment={index} 
-                            key={commentary.uuid || index} 
+                            key={commentary.id || index} 
                         />
                     )
                 }                
