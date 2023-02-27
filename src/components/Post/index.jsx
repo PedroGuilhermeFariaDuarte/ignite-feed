@@ -12,7 +12,7 @@ import styles from "./styles.module.css"
 
 export function Post({post}) {
     const [comments,setComments] = useState(post.commentaries)
-    const [newCommentText,setNewCommentText] = useState("")
+    const [newCommentText,setNewCommentText] = useState("")    
 
     const publisehdDateFormated = format(post.publishedAt, "d 'de' LLLL 'ás' HH:mm'h'", {
         locale: ptBR
@@ -22,11 +22,14 @@ export function Post({post}) {
         locale: ptBR,
         addSuffix: true
     })
+
+    const isNewCommentEmpty = newCommentText.length <= 0
     
     function handleNewCommentChange(){
         try {
-            if (!event || event?.target?.value?.trim() === '') return
+            if (!event ) return
             
+            event.target.setCustomValidity("")
             const elementTextAreaValue = event?.target?.value || '';
 
             setNewCommentText(elementTextAreaValue)
@@ -66,32 +69,25 @@ export function Post({post}) {
         } catch (error) {            
             console.log('PostComponent@error ~ handleCreateNewCommentary', error)
         }
-    }
+    }    
 
-    function handleNewHot(indexComment = -1){
+    function handleRemoveCommentary(indexCommentToDelete = -1){
         try {            
-            if (indexComment <= -1 || !comments?.[indexComment]) return            
+            if (indexCommentToDelete <= -1 || !comments?.[indexCommentToDelete]) return            
 
-            const cachedComments = comments
-            const cachedHots = cachedComments[indexComment].hots
+            const commentsWithoutDeletedOne = comments.filter((_comment, index) => index !== indexCommentToDelete)                        
 
-            cachedComments[indexComment].hots = cachedHots + 1
-
-            setComments(cachedComments)
+            setComments(commentsWithoutDeletedOne)
         } catch (error) {
-            console.log("PostComponent@error ~ handleNewHot", error)
+            console.log("PostComponent@error ~ handleRemoveCommentary", error)
         }
     }
 
-    function handleRemoveCommentary(indexComment = -1){
-        try {            
-            if (indexComment <= -1 || !comments?.[indexComment]) return            
-
-            const cachedComments = comments.filter((_comment, index) => index !== indexComment)                        
-
-            setComments(cachedComments)
+    function handlerNewCommentInvalid(){
+        try {
+            event.target.setCustomValidity("Esté campo é obrigatório")            
         } catch (error) {
-            console.log("PostComponent@error ~ handleRemoveCommentary", error)
+            console.log("PostComponent@error ~ handlerNewCommentInvalid", error)
         }
     }
 
@@ -137,15 +133,17 @@ export function Post({post}) {
             </div>
 
             <form onSubmit={handleCreateNewCommentary} className={styles.commentForm}>
-                <span className={styles.formDescription}>Deixei seu feedback</span>
+                <span className={styles.formDescription}>Deixe seu feedback</span>
                 <textarea 
                     placeholder="Deixe um comentario" 
                     name="comment" 
                     value={newCommentText}
-                    onChange={handleNewCommentChange} 
+                    onChange={handleNewCommentChange}
+                    onInvalid={handlerNewCommentInvalid}
+                    required 
                 />                                
                 <div className={styles.commentFormFooter}>
-                    <button type="submit">Publicar</button>
+                    <button type="submit" disabled={isNewCommentEmpty}>Publicar</button>
                 </div>
             </form>
 
@@ -155,9 +153,8 @@ export function Post({post}) {
                 }
                 {
                     comments.map((commentary, index) => <Comment 
-                            commentary={commentary} 
-                            setHot={handleNewHot} 
-                            removeCommentary={handleRemoveCommentary}
+                            commentary={commentary}                             
+                            onRemoveCommentary={handleRemoveCommentary}
                             indexComment={index} 
                             key={commentary.uuid || index} 
                         />
