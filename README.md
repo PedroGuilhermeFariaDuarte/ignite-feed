@@ -42,6 +42,9 @@ Se você se interessou sobre o CSS Modules veja esse [Readme](https://github.com
 
 E falando em Compilers e Bundles, o [Vite](https://vitejs.dev/) foi também uma grande surpresa, apenas alguns minutos antes digitei *npm run start* no terminal e tive que esperar alguns minutos até todo o processo de compiler e bundle serem finalizados e após instalar o vite digitei *npm run dev* e pronto!, a aplicação já estava rodando, tudo em questão de segundos, acho que foi menos 6sg...
 
+![image](https://user-images.githubusercontent.com/16112395/221959509-629d9fb6-acdc-44f4-8b3b-a003b2eef39b.png)
+
+
 O ECModules veio para ficar e como muitos Browser ja aderiram ao padrão acredito que o Webpack e Babel já estão com os dias contados.
 
 O vite faz o uso das fetaures de Modules do Ecmascript para "dinamizar" o carregamento de arquivos JS e em sob-demanda, no exemplo acima, do CSS Modules, o import só vai ser feito quando o componente for carregado na tela, e sem um processo lento de compile e bundle.
