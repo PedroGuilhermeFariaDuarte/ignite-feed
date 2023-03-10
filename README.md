@@ -53,6 +53,15 @@ Ainda estou me aprofundando no assunto mas de cara já estou vendo futuro nessa 
 
 Bom, é isso, tive uma grande atualização e uma boa reentrada no mundo do React, foi mal trocalhido.... estou pensando em fazer um comparativo entre o React e Vue/Nuxt em uma live pela [Twitch](https://www.twitch.tv/onedev_), fiquem de olha lá.
 
-E aproveitando estou planejando em fazer um face-lift nesse projeto, integrar com banco de dados, fazer o mobile, o deploy... 
+aproveitando estou planejando fazer um "face-lift" nesse projeto, integrar com banco de dados, fazer o mobile, adicionar novas features.... 
 
-estou com varias ideias em breve vamos ter um novo projeto e até lá! 
+Estou com varias ideias em breve vamos ter um novo projeto e até lá! 
+
+
+**Opa, atualizando**....👋 
+
+O foguete já foi pra deploy [acesse a aplicação aqui](https://whatsfeed.netlify.app/)
+
+<div>   
+    <p align="center"><img src="https://user-images.githubusercontent.com/16112395/224351487-339bdc3b-a844-45ea-b742-2e9e4836cdc3.gif" /></p>        
+</div>
